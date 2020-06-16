@@ -29,14 +29,12 @@ ARGOCD_PASSWORD=`kubectl -n argocd get pods -l app.kubernetes.io/name=argocd-ser
 
 echo ''
 echo 'Continue to store the ArgoCD IP address...'
-pe "ARGOCD_IP=`kubectl -n argocd get svc/argocd-server -o json | jq '.status.loadBalancer.ingress[0].ip' -j`"
+pe "ARGOCD_IP=`kubectl -n argocd get svc/argocd-server -o json | jq '.status.loadBalancer.ingress[0].hostname' -j`"
 
 if [[ ! -f argocd ]]; then
   echo ''
   echo 'Continue to install the correct ArgoCD binary locally'
   pe "wget --no-check-certificate https://${ARGOCD_IP}/download/argocd-darwin-amd64 -O argocd && chmod +x argocd"
-else
-  continue
 fi
 
 echo ''
@@ -48,8 +46,8 @@ echo 'Continue to add the DEV_CLUSTER to the ArgoCD cluster configuration...'
 pe "kubectx ${DEV_CLUSTER}"
 pe "./argocd cluster add `kubectx -c`"
 pe "./argocd proj create development"
-pe "./argocd proj add-source development https://github.com/Turbots/tanzu-demo"
-pe "./argocd proj add-source development https://github.com/Turbots/tanzu-demo-gitops"
+pe "./argocd proj add-source development https://github.com/fjb4/tanzu-demo"
+pe "./argocd proj add-source development https://github.com/fjb4/tanzu-demo-gitops"
 pe "./argocd proj add-source development https://charts.bitnami.com/bitnami"
 pe "./argocd proj add-destination development ${DEV_CLUSTER_URL} ${DEV_NAMESPACE}"
 
@@ -58,8 +56,8 @@ echo 'Continue to add the PROD_CLUSTER to the ArgoCD cluster configuration...'
 pe "kubectx ${PROD_CLUSTER}"
 pe "./argocd cluster add `kubectx -c`"
 pe "./argocd proj create production"
-pe "./argocd proj add-source production https://github.com/Turbots/tanzu-demo"
-pe "./argocd proj add-source production https://github.com/Turbots/tanzu-demo-gitops"
+pe "./argocd proj add-source production https://github.com/fjb4/tanzu-demo"
+pe "./argocd proj add-source production https://github.com/fjb4/tanzu-demo-gitops"
 pe "./argocd proj add-source production https://charts.bitnami.com/bitnami"
 pe "./argocd proj add-destination production ${PROD_CLUSTER_URL} ${PROD_NAMESPACE}"
 

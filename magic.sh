@@ -12,7 +12,7 @@
 ###############################################################################
 
 # the speed to "type" the text
-TYPE_SPEED=20
+TYPE_SPEED=50
 
 # no wait after "p" or "pe"
 NO_WAIT=false
@@ -73,14 +73,14 @@ function load_config() {
   AWS_ACCESS_KEY_SECRET=`load_config_value ".cicd.spinnaker.s3accesskey.secret"`
 
   DEV_CLUSTER=`load_config_value ".dev.kubectx"`
-  DEV_CLUSTER_URL=`load_config_value ".dev.url"`
+  DEV_CLUSTER_URL=`load_cluster_url $DEV_CLUSTER`
   DEV_NAMESPACE=`load_config_value ".dev.namespace"`
   DEV_RABBITMQ_PASSWORD=`load_config_value ".dev.rabbit.password"`
   DEV_REDIS_PASSWORD=`load_config_value ".dev.redis.password"`
   DEV_WAVEFRONT_TOKEN=`load_config_value ".dev.wavefront.token"`
 
   PROD_CLUSTER=`load_config_value ".prod.kubectx"`
-  PROD_CLUSTER_URL=`load_config_value ".prod.url"`
+  PROD_CLUSTER_URL=`load_cluster_url $PROD_CLUSTER`
   PROD_NAMESPACE=`load_config_value ".prod.namespace"`
   PROD_RABBITMQ_PASSWORD=`load_config_value ".prod.rabbit.password"`
   PROD_REDIS_PASSWORD=`load_config_value ".prod.redis.password"`
@@ -96,6 +96,11 @@ function load_config_value() {
     exit 1
   fi
 
+  echo ${VALUE}
+}
+
+function load_cluster_url() {
+  local VALUE=`tmc cluster provisionedcluster kubeconfig get $1 | yq r - 'clusters[0].cluster.server'`
   echo ${VALUE}
 }
 

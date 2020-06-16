@@ -14,7 +14,7 @@ pe "kubectx ${CICD_CLUSTER}"
 
 echo ''
 echo 'Continue to install kpack...'
-pe "kubectl apply -n kpack -f kubernetes/cicd/kpack/01-kpack-release-0.0.8.yml"
+pe "kubectl apply -n kpack -f kubernetes/cicd/kpack/01-kpack-release-0.0.9.yml"
 
 echo 'Continue to set the Github and Docker secrets...'
 wait
@@ -22,12 +22,13 @@ cat kubernetes/cicd/kpack/02-github-creds.template.yml | sed "s/GITHUB_USERNAME/
 cat kubernetes/cicd/kpack/03-dockerhub-creds.template.yml | sed "s/DOCKERHUB_USERNAME/$DOCKERHUB_USERNAME/" | sed "s/DOCKERHUB_PASSWORD/$DOCKERHUB_PASSWORD/" |kubectl create -n kpack -f -
 
 echo 'Continue to install the default kpack builder...'
-pe "kubectl apply -n kpack -f kubernetes/cicd/kpack/04-java-builder.yml"
+pe "kubectl apply -n kpack -f kubernetes/cicd/kpack/04-default-builder.yml"
 
 echo 'Continue to configure the application images...'
 pe "kubectl apply -n kpack -f kubernetes/cicd/kpack/images/account-image.yml"
 pe "kubectl apply -n kpack -f kubernetes/cicd/kpack/images/confirmation-image.yml"
 pe "kubectl apply -n kpack -f kubernetes/cicd/kpack/images/payment-image.yml"
+pe "kubectl apply -n kpack -f kubernetes/cicd/kpack/images/symfony-demo-app-image.yml"
 
 echo ''
 echo '----------------------------------------------'

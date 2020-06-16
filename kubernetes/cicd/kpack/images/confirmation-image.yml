@@ -4,7 +4,7 @@ metadata:
   name: confirmation-service
   namespace: kpack
 spec:
-  tag: dhubau/confirmation-service
+  tag: fjb4/confirmation-service
   serviceAccount: kpack-service-account
   successBuildHistoryLimit: 2
   builder:
@@ -13,6 +13,6 @@ spec:
   cacheSize: "2Gi"
   source:
     git:
-      url: https://github.com/Turbots/tanzu-demo.git
+      url: https://github.com/fjb4/tanzu-demo.git
       revision: master
     subPath: "confirmation-service"

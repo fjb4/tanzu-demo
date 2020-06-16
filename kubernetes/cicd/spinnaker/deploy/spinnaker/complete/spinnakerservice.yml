@@ -14,8 +14,8 @@ spec:
       persistentStorage:
         persistentStoreType: s3
         s3:
-          bucket: dhubau-spinnaker
-          accessKeyId: # ACCESS KEY ID
+          bucket: spinnaker-1
+          accessKeyId: AKIAXHAVKZ6ZP7SGENPK
           secretAccessKey: encrypted:k8s!n:spinnaker!k:aws-access-key-secret
           rootFolder: front50
 
