@@ -3,6 +3,7 @@
 . magic.sh
 
 load_config
+load_cluster_urls
 
 echo '----------------------------------------------'
 echo '         Configuring GitOps in ArgoCD'

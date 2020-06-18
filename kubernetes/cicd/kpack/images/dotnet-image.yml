@@ -1,0 +1,17 @@
+apiVersion: build.pivotal.io/v1alpha1
+kind: Image
+metadata:
+  name: dotnet-core-react-example
+  namespace: kpack
+spec:
+  tag: fjb4/dotnet-core-react-example
+  serviceAccount: kpack-service-account
+  successBuildHistoryLimit: 2
+  builder:
+    name: default-builder
+    kind: Builder
+  cacheSize: "2Gi"
+  source:
+    git:
+      url: https://github.com/fjb4/dotnet-core-react-example.git
+      revision: master
