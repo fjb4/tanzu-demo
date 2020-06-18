@@ -14,4 +14,4 @@ spec:
   source:
     git:
       url: https://github.com/fjb4/dotnet-core-react-example.git
-      revision: master
+      revision: payment-service
