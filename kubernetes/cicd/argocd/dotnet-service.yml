@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  namespace: argocd
+  name: dotnet-service-ENVIRONMENT
+spec:
+  destination:
+    server: 'CLUSTER_URL'
+    namespace: WORKLOAD_NAMESPACE
+  source:
+    repoURL: 'https://github.com/fjb4/tanzu-demo-gitops'
+    targetRevision: master
+    path: 'ENVIRONMENT/dotnet-service'
+  project: ENVIRONMENT
+  syncPolicy:
+    automated:
+      automated:
+        prune: false
+        selfHeal: false
+      prune: true
+      selfHeal: true

@@ -3,6 +3,7 @@
 . magic.sh
 
 load_config
+load_cluster_urls
 
 echo '----------------------------------'
 echo '       Installing ArgoCD'
@@ -48,6 +49,7 @@ pe "./argocd cluster add `kubectx -c`"
 pe "./argocd proj create development"
 pe "./argocd proj add-source development https://github.com/fjb4/tanzu-demo"
 pe "./argocd proj add-source development https://github.com/fjb4/tanzu-demo-gitops"
+pe "./argocd proj add-source development https://github.com/fjb4/dotnet-core-react-example"
 pe "./argocd proj add-source development https://charts.bitnami.com/bitnami"
 pe "./argocd proj add-destination development ${DEV_CLUSTER_URL} ${DEV_NAMESPACE}"
 
@@ -58,6 +60,7 @@ pe "./argocd cluster add `kubectx -c`"
 pe "./argocd proj create production"
 pe "./argocd proj add-source production https://github.com/fjb4/tanzu-demo"
 pe "./argocd proj add-source production https://github.com/fjb4/tanzu-demo-gitops"
+pe "./argocd proj add-source production https://github.com/fjb4/dotnet-core-react-example"
 pe "./argocd proj add-source production https://charts.bitnami.com/bitnami"
 pe "./argocd proj add-destination production ${PROD_CLUSTER_URL} ${PROD_NAMESPACE}"
 

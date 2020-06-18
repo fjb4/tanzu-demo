@@ -29,6 +29,7 @@ pe "kubectl apply -n kpack -f kubernetes/cicd/kpack/images/account-image.yml"
 pe "kubectl apply -n kpack -f kubernetes/cicd/kpack/images/confirmation-image.yml"
 pe "kubectl apply -n kpack -f kubernetes/cicd/kpack/images/payment-image.yml"
 pe "kubectl apply -n kpack -f kubernetes/cicd/kpack/images/symfony-demo-app-image.yml"
+pe "kubectl apply -n kpack -f kubernetes/cicd/kpack/images/dotnet-image.yml"
 
 echo ''
 echo '----------------------------------------------'
