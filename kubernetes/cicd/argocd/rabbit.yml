@@ -16,7 +16,7 @@ spec:
       - name: replicas
         value: '2'
       - name: service.type
-        value: 'LoadBalancer'
+        value: 'ClusterIP'
       - name: rabbitmq.existingPasswordSecret
         value: 'rabbit'
       - name: rabbitmq.existingErlangSecret
