@@ -72,22 +72,22 @@ function load_config() {
   AWS_ACCESS_KEY_ID=`load_config_value ".cicd.spinnaker.s3accesskey.id"`
   AWS_ACCESS_KEY_SECRET=`load_config_value ".cicd.spinnaker.s3accesskey.secret"`
 
-  DEV_CLUSTER=`load_config_value ".dev.kubectx"`
-  DEV_NAMESPACE=`load_config_value ".dev.namespace"`
-  DEV_RABBITMQ_PASSWORD=`load_config_value ".dev.rabbit.password"`
-  DEV_REDIS_PASSWORD=`load_config_value ".dev.redis.password"`
-  DEV_WAVEFRONT_TOKEN=`load_config_value ".dev.wavefront.token"`
+  ALPHA_CLUSTER=`load_config_value ".alpha.kubectx"`
+  ALPHA_NAMESPACE=`load_config_value ".alpha.namespace"`
+  ALPHA_RABBITMQ_PASSWORD=`load_config_value ".alpha.rabbit.password"`
+  ALPHA_REDIS_PASSWORD=`load_config_value ".alpha.redis.password"`
+  ALPHA_WAVEFRONT_TOKEN=`load_config_value ".alpha.wavefront.token"`
 
-  PROD_CLUSTER=`load_config_value ".prod.kubectx"`
-  PROD_NAMESPACE=`load_config_value ".prod.namespace"`
-  PROD_RABBITMQ_PASSWORD=`load_config_value ".prod.rabbit.password"`
-  PROD_REDIS_PASSWORD=`load_config_value ".prod.redis.password"`
-  PROD_WAVEFRONT_TOKEN=`load_config_value ".prod.wavefront.token"`
+  BRAVO_CLUSTER=`load_config_value ".bravo.kubectx"`
+  BRAVO_NAMESPACE=`load_config_value ".bravo.namespace"`
+  BRAVO_RABBITMQ_PASSWORD=`load_config_value ".bravo.rabbit.password"`
+  BRAVO_REDIS_PASSWORD=`load_config_value ".bravo.redis.password"`
+  BRAVO_WAVEFRONT_TOKEN=`load_config_value ".bravo.wavefront.token"`
 }
 
 function load_cluster_urls() {
-  DEV_CLUSTER_URL=`load_cluster_url $DEV_CLUSTER`
-  PROD_CLUSTER_URL=`load_cluster_url $PROD_CLUSTER`
+  ALPHA_CLUSTER_URL=`load_cluster_url $ALPHA_CLUSTER`
+  BRAVO_CLUSTER_URL=`load_cluster_url $BRAVO_CLUSTER`
 }
 
 function load_config_value() {

@@ -7,14 +7,14 @@ load_config
 KUBECONFIG_CICD=`mktemp`
 tmc cluster provisionedcluster kubeconfig get ${CICD_CLUSTER} >> ${KUBECONFIG_CICD}
 
-KUBECONFIG_DEV=`mktemp`
-tmc cluster provisionedcluster kubeconfig get ${DEV_CLUSTER} >> ${KUBECONFIG_DEV}
+KUBECONFIG_ALPHA=`mktemp`
+tmc cluster provisionedcluster kubeconfig get ${ALPHA_CLUSTER} >> ${KUBECONFIG_ALPHA}
 
-KUBECONFIG_PROD=`mktemp`
-tmc cluster provisionedcluster kubeconfig get ${PROD_CLUSTER} >> ${KUBECONFIG_PROD}
+KUBECONFIG_BRAVO=`mktemp`
+tmc cluster provisionedcluster kubeconfig get ${BRAVO_CLUSTER} >> ${KUBECONFIG_BRAVO}
 
-KUBECONFIG=${KUBECONFIG_CICD}:${KUBECONFIG_DEV}:${KUBECONFIG_PROD} kubectl config view --merge --flatten
+KUBECONFIG=${KUBECONFIG_CICD}:${KUBECONFIG_ALPHA}:${KUBECONFIG_BRAVO} kubectl config view --merge --flatten
 
 rm ${KUBECONFIG_CICD}
-rm ${KUBECONFIG_DEV}
-rm ${KUBECONFIG_PROD}
+rm ${KUBECONFIG_ALPHA}
+rm ${KUBECONFIG_BRAVO}

@@ -29,40 +29,40 @@ ARGOCD_USERNAME=admin
 ARGOCD_PASSWORD=`kubectl -n argocd get pods -l app.kubernetes.io/name=argocd-server -o name | cut -d'/' -f 2`
 
 echo ''
-echo 'Continue to store the ArgoCD IP address...'
-pe "ARGOCD_IP=`kubectl -n argocd get svc/argocd-server -o json | jq '.status.loadBalancer.ingress[0].hostname' -j`"
+echo 'Continue to store the ArgoCD host name...'
+pe "ARGOCD_HOST=`kubectl -n argocd get svc/argocd-server -o json | jq '.status.loadBalancer.ingress[0].hostname' -j`"
 
 if [[ ! -f argocd ]]; then
   echo ''
   echo 'Continue to install the correct ArgoCD binary locally'
-  pe "wget --no-check-certificate https://${ARGOCD_IP}/download/argocd-darwin-amd64 -O argocd && chmod +x argocd"
+  pe "wget --no-check-certificate https://${ARGOCD_HOST}/download/argocd-darwin-amd64 -O argocd && chmod +x argocd"
 fi
 
 echo ''
-echo 'Continue to login to ArgoCD using "argocd login $ARGOCD_IP --name argocd --username $ARGOCD_USERNAME --password $ARGOCD_PASSWORD --insecure"'
-pe "./argocd login ${ARGOCD_IP} --name argocd --username ${ARGOCD_USERNAME} --password ${ARGOCD_PASSWORD} --insecure"
+echo 'Continue to login to ArgoCD using "argocd login $ARGOCD_HOST --name argocd --username $ARGOCD_USERNAME --password $ARGOCD_PASSWORD --insecure"'
+pe "./argocd login ${ARGOCD_HOST} --name argocd --username ${ARGOCD_USERNAME} --password ${ARGOCD_PASSWORD} --insecure"
 
 echo ''
-echo 'Continue to add the DEV_CLUSTER to the ArgoCD cluster configuration...'
-pe "kubectx ${DEV_CLUSTER}"
+echo 'Continue to add the ALPHA_CLUSTER to the ArgoCD cluster configuration...'
+pe "kubectx ${ALPHA_CLUSTER}"
 pe "./argocd cluster add `kubectx -c`"
-pe "./argocd proj create development"
-pe "./argocd proj add-source development https://github.com/fjb4/tanzu-demo"
-pe "./argocd proj add-source development https://github.com/fjb4/tanzu-demo-gitops"
-pe "./argocd proj add-source development https://github.com/fjb4/dotnet-core-react-example"
-pe "./argocd proj add-source development https://charts.bitnami.com/bitnami"
-pe "./argocd proj add-destination development ${DEV_CLUSTER_URL} ${DEV_NAMESPACE}"
+pe "./argocd proj create alpha"
+pe "./argocd proj add-source alpha https://github.com/fjb4/tanzu-demo"
+pe "./argocd proj add-source alpha https://github.com/fjb4/tanzu-demo-gitops"
+pe "./argocd proj add-source alpha https://github.com/fjb4/dotnet-core-react-example"
+pe "./argocd proj add-source alpha https://charts.bitnami.com/bitnami"
+pe "./argocd proj add-destination alpha ${ALPHA_CLUSTER_URL} ${ALPHA_NAMESPACE}"
 
 echo ''
-echo 'Continue to add the PROD_CLUSTER to the ArgoCD cluster configuration...'
-pe "kubectx ${PROD_CLUSTER}"
+echo 'Continue to add the BRAVO_CLUSTER to the ArgoCD cluster configuration...'
+pe "kubectx ${BRAVO_CLUSTER}"
 pe "./argocd cluster add `kubectx -c`"
-pe "./argocd proj create production"
-pe "./argocd proj add-source production https://github.com/fjb4/tanzu-demo"
-pe "./argocd proj add-source production https://github.com/fjb4/tanzu-demo-gitops"
-pe "./argocd proj add-source production https://github.com/fjb4/dotnet-core-react-example"
-pe "./argocd proj add-source production https://charts.bitnami.com/bitnami"
-pe "./argocd proj add-destination production ${PROD_CLUSTER_URL} ${PROD_NAMESPACE}"
+pe "./argocd proj create bravo"
+pe "./argocd proj add-source bravo https://github.com/fjb4/tanzu-demo"
+pe "./argocd proj add-source bravo https://github.com/fjb4/tanzu-demo-gitops"
+pe "./argocd proj add-source bravo https://github.com/fjb4/dotnet-core-react-example"
+pe "./argocd proj add-source bravo https://charts.bitnami.com/bitnami"
+pe "./argocd proj add-destination bravo ${BRAVO_CLUSTER_URL} ${BRAVO_NAMESPACE}"
 
 echo '----------------------------------------------'
 echo '      ArgoCD configured successfully!'

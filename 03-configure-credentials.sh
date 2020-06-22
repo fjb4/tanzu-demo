@@ -5,27 +5,27 @@
 load_config
 
 echo '----------------------------------------------'
-echo '     Configuring Credentials in Dev cluster'
+echo '     Configuring Credentials in Alpha cluster'
 echo '----------------------------------------------'
 
 echo ''
-echo 'Continue to switch to the Dev Cluster...'
-pe "kubectx ${DEV_CLUSTER}"
+echo 'Continue to switch to the Alpha Cluster...'
+pe "kubectx ${ALPHA_CLUSTER}"
 
 echo ''
-cat kubernetes/cicd/argocd/rabbit-secret.template.yml | sed "s/RABBITMQ_PASSWORD/$DEV_RABBITMQ_PASSWORD/" | kubectl create -n ${DEV_NAMESPACE} -f -
+cat kubernetes/cicd/argocd/rabbit-secret.template.yml | sed "s/RABBITMQ_PASSWORD/$ALPHA_RABBITMQ_PASSWORD/" | kubectl create -n ${ALPHA_NAMESPACE} -f -
 
-cat kubernetes/cicd/argocd/wavefront-token.template.yml | sed "s/WAVEFRONT_TOKEN/$DEV_WAVEFRONT_TOKEN/" | kubectl create -n ${DEV_NAMESPACE} -f -
+cat kubernetes/cicd/argocd/wavefront-token.template.yml | sed "s/WAVEFRONT_TOKEN/$ALPHA_WAVEFRONT_TOKEN/" | kubectl create -n ${ALPHA_NAMESPACE} -f -
 
 echo '----------------------------------------------'
-echo '     Configuring Credentials in Prod cluster'
+echo '     Configuring Credentials in Bravo cluster'
 echo '----------------------------------------------'
 
 echo ''
-echo 'Continue to switch to the Prod Cluster...'
-pe "kubectx ${PROD_CLUSTER}"
+echo 'Continue to switch to the Bravo Cluster...'
+pe "kubectx ${BRAVO_CLUSTER}"
 
 echo ''
-cat kubernetes/cicd/argocd/rabbit-secret.template.yml | sed "s/RABBITMQ_PASSWORD/$PROD_RABBITMQ_PASSWORD/" | kubectl create -n ${PROD_NAMESPACE} -f -
+cat kubernetes/cicd/argocd/rabbit-secret.template.yml | sed "s/RABBITMQ_PASSWORD/$BRAVO_RABBITMQ_PASSWORD/" | kubectl create -n ${BRAVO_NAMESPACE} -f -
 
-cat kubernetes/cicd/argocd/wavefront-token.template.yml | sed "s/WAVEFRONT_TOKEN/$PROD_WAVEFRONT_TOKEN/" | kubectl create -n ${PROD_NAMESPACE} -f -
+cat kubernetes/cicd/argocd/wavefront-token.template.yml | sed "s/WAVEFRONT_TOKEN/$BRAVO_WAVEFRONT_TOKEN/" | kubectl create -n ${BRAVO_NAMESPACE} -f -

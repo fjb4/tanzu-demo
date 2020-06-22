@@ -5,5 +5,5 @@
 load_config
 
 tmc cluster delete ${CICD_CLUSTER}
-tmc cluster delete ${DEV_CLUSTER}
-tmc cluster delete ${PROD_CLUSTER}
+tmc cluster delete ${ALPHA_CLUSTER}
+tmc cluster delete ${BRAVO_CLUSTER}

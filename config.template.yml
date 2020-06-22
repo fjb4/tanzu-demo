@@ -1,6 +1,6 @@
 cicd:
   kubectx: # Kubernetes Context name
-dev:
+alpha:
   kubectx: # Kubernetes Context name
   namespace: default
   rabbit:
