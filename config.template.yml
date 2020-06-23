@@ -1,5 +1,11 @@
 cicd:
   kubectx: # Kubernetes Context name
+  dockerhub:
+    username: # Dockerhub username
+    password: # Dockerhub password token
+  github:
+    username: # Github username
+    password: # Github password or authentication token
 alpha:
   kubectx: # Kubernetes Context name
   namespace: default
@@ -9,13 +15,8 @@ alpha:
     password: # Redis password
   wavefront:
     token: # Wavefront API token
-  dockerhub:
-    username: # Dockerhub username
-    password: # Dockerhub password token
-  github:
-    username: # Github username
-    password: # Github password or authentication token
-  spinnaker:
-    s3accesskey:
-      id: # AWS Access Key ID for accessing the S3 bucket
-      secret: # AWS Access Key Secret for accessing the S3 bucket
+bravo:
+  kubectx: # Kubernetes Context name
+  namespace: default
+  wavefront:
+    token: # Wavefront API token

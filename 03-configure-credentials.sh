@@ -26,6 +26,4 @@ echo 'Continue to switch to the Bravo Cluster...'
 pe "kubectx ${BRAVO_CLUSTER}"
 
 echo ''
-cat kubernetes/cicd/argocd/rabbit-secret.template.yml | sed "s/RABBITMQ_PASSWORD/$BRAVO_RABBITMQ_PASSWORD/" | kubectl create -n ${BRAVO_NAMESPACE} -f -
-
 cat kubernetes/cicd/argocd/wavefront-token.template.yml | sed "s/WAVEFRONT_TOKEN/$BRAVO_WAVEFRONT_TOKEN/" | kubectl create -n ${BRAVO_NAMESPACE} -f -

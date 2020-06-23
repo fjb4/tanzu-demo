@@ -19,7 +19,7 @@ echo ''
 load_config
 
 echo ''
-echo 'Setting up Tanzu Demo with CICD_CLUSTER ['${CICD_CLUSTER}'] and DEV_CLUSTER ['${DEV_CLUSTER}']'
+echo 'Setting up Tanzu Demo with CICD_CLUSTER ['${CICD_CLUSTER}'], ALPHA_CLUSTER ['${ALPHA_CLUSTER}'], and BRAVO_CLUSTER ['${BRAVO_CLUSTER}']'
 echo ''
 
 ./01-install-kpack.sh
@@ -42,3 +42,9 @@ echo ''
 read
 
 ./04-configure-gitops.sh
+
+echo 'Continue?'
+echo ''
+read
+
+./05-configure-mesh.sh

@@ -25,6 +25,10 @@ echo ''
 echo 'Continue to fetch a Load Balanced IP for the ArgoCD Server...'
 pe "kubectl -n argocd patch svc argocd-server -p '{\"spec\": {\"type\": \"LoadBalancer\"}}'"
 
+echo ''
+echo 'Wait a bit for the load balancer to be provisioned...'
+wait
+
 ARGOCD_USERNAME=admin
 ARGOCD_PASSWORD=`kubectl -n argocd get pods -l app.kubernetes.io/name=argocd-server -o name | cut -d'/' -f 2`
 
