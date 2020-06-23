@@ -15,6 +15,9 @@ pe "kubectx ${ALPHA_CLUSTER}"
 echo ''
 cat kubernetes/cicd/argocd/rabbit-secret.template.yml | sed "s/RABBITMQ_PASSWORD/$ALPHA_RABBITMQ_PASSWORD/" | kubectl create -n ${ALPHA_NAMESPACE} -f -
 
+kubectl create namespace rabbit
+cat kubernetes/cicd/argocd/rabbit-secret.template.yml | sed "s/RABBITMQ_PASSWORD/$ALPHA_RABBITMQ_PASSWORD/" | kubectl create -n rabbit -f -
+
 cat kubernetes/cicd/argocd/wavefront-token.template.yml | sed "s/WAVEFRONT_TOKEN/$ALPHA_WAVEFRONT_TOKEN/" | kubectl create -n ${ALPHA_NAMESPACE} -f -
 
 echo '----------------------------------------------'

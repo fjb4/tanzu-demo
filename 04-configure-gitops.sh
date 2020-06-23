@@ -39,7 +39,6 @@ echo ''
 
 echo 'Continue to configure the Redis Helm chart in ArgoCD...'
 cat kubernetes/cicd/argocd/wavefront-proxy.yml | sed "s/WORKLOAD_NAMESPACE/${ALPHA_NAMESPACE}/" | sed "s/CLUSTER_URL/${ALPHA_CLUSTER_URL//\//\\/}/" | sed "s/ENVIRONMENT/alpha/" | kubectl create -n argocd -f -
-cat kubernetes/cicd/argocd/wavefront-proxy.yml | sed "s/WORKLOAD_NAMESPACE/${BRAVO_NAMESPACE}/" | sed "s/CLUSTER_URL/${BRAVO_CLUSTER_URL//\//\\/}/" | sed "s/ENVIRONMENT/bravo/" | kubectl create -n argocd -f -
 echo ''
 
 echo '----------------------------------------------'

@@ -49,24 +49,25 @@ pe "./argocd login ${ARGOCD_HOST} --name argocd --username ${ARGOCD_USERNAME} --
 echo ''
 echo 'Continue to add the ALPHA_CLUSTER to the ArgoCD cluster configuration...'
 pe "kubectx ${ALPHA_CLUSTER}"
-pe "./argocd cluster add `kubectx -c`"
-pe "./argocd proj create alpha"
-pe "./argocd proj add-source alpha https://github.com/fjb4/tanzu-demo"
-pe "./argocd proj add-source alpha https://github.com/fjb4/tanzu-demo-gitops"
-pe "./argocd proj add-source alpha https://github.com/fjb4/dotnet-core-react-example"
-pe "./argocd proj add-source alpha https://charts.bitnami.com/bitnami"
-pe "./argocd proj add-destination alpha ${ALPHA_CLUSTER_URL} ${ALPHA_NAMESPACE}"
+./argocd cluster add `kubectx -c`
+./argocd proj create alpha
+./argocd proj add-source alpha https://github.com/fjb4/tanzu-demo
+./argocd proj add-source alpha https://github.com/fjb4/tanzu-demo-gitops
+./argocd proj add-source alpha https://github.com/fjb4/dotnet-core-react-example
+./argocd proj add-source alpha https://charts.bitnami.com/bitnami
+./argocd proj add-destination alpha ${ALPHA_CLUSTER_URL} ${ALPHA_NAMESPACE}
+./argocd proj add-destination alpha ${ALPHA_CLUSTER_URL} rabbit
 
 echo ''
 echo 'Continue to add the BRAVO_CLUSTER to the ArgoCD cluster configuration...'
 pe "kubectx ${BRAVO_CLUSTER}"
-pe "./argocd cluster add `kubectx -c`"
-pe "./argocd proj create bravo"
-pe "./argocd proj add-source bravo https://github.com/fjb4/tanzu-demo"
-pe "./argocd proj add-source bravo https://github.com/fjb4/tanzu-demo-gitops"
-pe "./argocd proj add-source bravo https://github.com/fjb4/dotnet-core-react-example"
-pe "./argocd proj add-source bravo https://charts.bitnami.com/bitnami"
-pe "./argocd proj add-destination bravo ${BRAVO_CLUSTER_URL} ${BRAVO_NAMESPACE}"
+./argocd cluster add `kubectx -c`
+./argocd proj create bravo
+./argocd proj add-source bravo https://github.com/fjb4/tanzu-demo
+./argocd proj add-source bravo https://github.com/fjb4/tanzu-demo-gitops
+./argocd proj add-source bravo https://github.com/fjb4/dotnet-core-react-example
+./argocd proj add-source bravo https://charts.bitnami.com/bitnami
+./argocd proj add-destination bravo ${BRAVO_CLUSTER_URL} ${BRAVO_NAMESPACE}
 
 echo '----------------------------------------------'
 echo '      ArgoCD configured successfully!'
