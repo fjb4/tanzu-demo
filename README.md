@@ -52,3 +52,6 @@ To access the Argo CD user interface:
 Get the host name of the ingress gateway: `kubectl get svc istio-ingressgateway -n istio-system`.
 
 When you're done, delete all the clusters by running `delete-clusters.sh`.
+
+How to install RabbitMQ with Istio MTLS:
+https://github.com/arielb135/RabbitMQ-with-istio-MTLS
