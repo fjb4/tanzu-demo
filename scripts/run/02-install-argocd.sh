@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-. magic.sh
+. ../magic.sh
 
 load_config
 load_cluster_urls

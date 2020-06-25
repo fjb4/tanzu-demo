@@ -2,6 +2,6 @@
 .idea/
 /kubernetes/cicd/kpack/02-github-creds.yml
 /kubernetes/cicd/kpack/03-dockerhub-creds.yml
-/argocd
-/config.yml
+/scripts/run/argocd
+/scripts/config.yml
 /manifests.tgz

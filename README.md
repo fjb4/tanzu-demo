@@ -1,9 +1,3 @@
-![Account Service CI](https://github.com/fjb4/tanzu-demo/workflows/Account%20Service%20CI/badge.svg)
-
-![Confirmation Service CI](https://github.com/fjb4/tanzu-demo/workflows/Confirmation%20Service%20CI/badge.svg)
-
-![Payment Service CI](https://github.com/fjb4/tanzu-demo/workflows/Payment%20Service%20CI/badge.svg)
-
 ![Tanzu](tanzu-logo.png)
 
 # VMware Tanzu Demo
@@ -15,31 +9,29 @@ When source code changes, the applications are rebuilt using [Build Service](htt
 
 Both Kubernetes clusters are managed using [Mission Control](https://tanzu.vmware.com/mission-control) and both infrastructure, Kubernetes, applications and services are monitored using [Observability by Wavefront](https://tanzu.vmware.com/observability).
 
-## Use Case - Banking Application
-
-#### Application Architecture
-
-#### Deployment Diagram
-
-#### Continuous Delivery Diagram
-
 ## Installation
 
-Prior to demoing:
+Prerequisites
+- The following tools must be installed and in your path:
+  - [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
+  - [kubectx](https://github.com/ahmetb/kubectx)
+  - [curl](https://curl.haxx.se/)
+  - [tmc](https://docs.vmware.com/en/VMware-Tanzu-Mission-Control/services/tanzumc-using/GUID-7EEBDAEF-7868-49EC-8069-D278FD100FD9.html)
+
+Prepare for the demo by using the scripts in scripts/prep folder:
 - Remove any existing container images from Docker Hub
-- Copy the `config.template.yml` to config.yml and fill in the values.
-- Create the Kubernetes clusters by running `create-clusters.sh`.
+- Copy the `scripts/config.template.yml` to config.yml and fill in the values.
+- Create the Kubernetes clusters by running `01-create-clusters.sh`.
 - After the clusters have been created:
-  - Run `get-kubeconfig.sh > ~/.kube/config` to overwrite your kubeconfig file with connection information for the new clusters.
-  - Run `prep-clusters.sh`.
-  - Onboard the clusters into Tanzu Service Mesh and create the "acme.com" GNS.
+  - Run `02-get-kubeconfig.sh > ~/.kube/config` to overwrite your kubeconfig file with connection information for the new clusters.
+  - Run `03-prep-clusters.sh`.
+  - Onboard the clusters into Tanzu Service Mesh
+    - Create the "acme.com" GNS and connect the default namespaces in the alpha & bravo clusters.
+  - Run `04-remove-images.sh` to remove any existing images from Docker Hub.
 
-Then follow the instructions in the `setup_all.sh` script to install everything from scratch.
-
-Alternatively, install the different components by running the various setup scripts.
-
+Run the demo using the scripts in the scripts/run folder:
 - Install kpack using `01-install-kpack.sh`.
-- Install argocd using `02-install-argocd.sh`.
+- Install ArgoCD using `02-install-argocd.sh`.
 - Configure the credentials for the various services in `03-configure-credentials.sh`.
 - Configure the GitOps resources using `04-configure-gitops.sh`.
 - Configure service mesh using `05-configure-mesh.sh`.
@@ -55,3 +47,38 @@ When you're done, delete all the clusters by running `delete-clusters.sh`.
 
 How to install RabbitMQ with Istio MTLS:
 https://github.com/arielb135/RabbitMQ-with-istio-MTLS
+
+### Script
+- Tanzu Mission Control
+  - Provision TKG clusters
+    - Add nodes
+    - Upgrade
+  - Attach clusters from anywhere
+  - tmc CLI
+  - Cluster groups
+  - Workspaces
+  - Policy & access management
+  - Inspections
+  - Data protection
+  - Roadmap features?
+- Continuous integration via Tanzu Build Service
+  - Show empty Docker Hub registry, empty default namespace in CICD cluster
+  - Show app YAML
+  - Install `01-install-kpack.sh`
+  - Show app build progress
+    - Java & .NET
+  - Show resulting images on Docker Hub
+- Continuous deployment via Argo CD
+  - Install Argo CD `02-install-argocd.sh`
+  - Show ArgoCD
+    - Log into ArgoCD & show UI
+    - Show app definitions
+    - Show references to Bitnami Helm charts
+  - Show empty Alpha & Bravo clusters
+  - Configure credentials `03-configure-credentials.sh`
+  - Configure GitOps `04-configure-gitops.sh`
+  - Configure service mesh `05-configure-mesh.sh`
+  - Show apps running on Alpha & Bravo clusters
+- Service Mesh
+  - Show global namespace configuration
+  - Show traffic

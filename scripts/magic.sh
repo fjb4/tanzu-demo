@@ -59,7 +59,7 @@ function usage() {
 }
 
 function load_config() {
-  if [[ ! -f config.yml ]] ; then
+  if [[ ! -f ../config.yml ]] ; then
     echo "Could not find config.yml file. Copy the config.template.yml file and fill in the values."
     exit 1
   fi
@@ -91,7 +91,7 @@ function load_cluster_urls() {
 }
 
 function load_config_value() {
-  local VALUE=`cat config.yml | yq r - -j | jq $1 -j`
+  local VALUE=`cat ../config.yml | yq r - -j | jq $1 -j`
 
   if [[ -z "$VALUE" ]]
   then
