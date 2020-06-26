@@ -1,7 +1,7 @@
 *.iml
 .idea/
-/kubernetes/cicd/kpack/02-github-creds.yml
-/kubernetes/cicd/kpack/03-dockerhub-creds.yml
+.ipynb_checkpoints/
 /scripts/run/argocd
 /scripts/config.yml
-/manifests.tgz
+/config.sh
+/argocd
