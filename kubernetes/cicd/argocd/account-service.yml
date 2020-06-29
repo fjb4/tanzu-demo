@@ -6,7 +6,7 @@ metadata:
 spec:
   destination:
     server: 'CLUSTER_URL'
-    namespace: WORKLOAD_NAMESPACE
+    namespace: default
   source:
     repoURL: 'https://github.com/fjb4/tanzu-demo-gitops'
     targetRevision: master

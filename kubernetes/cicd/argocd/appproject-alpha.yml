@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: alpha
+spec:
+  destinations:
+  - namespace: default
+    server: 'CLUSTER_URL'
+  - namespace: rabbit
+    server: 'CLUSTER_URL'
+  - namespace: kubeapps
+    server: 'CLUSTER_URL'
+  - namespace: wavefront
+    server: 'CLUSTER_URL'
+  sourceRepos:
+  - https://github.com/fjb4/tanzu-demo
+  - https://github.com/fjb4/tanzu-demo-gitops
+  - https://github.com/fjb4/dotnet-core-react-example
+  - https://charts.bitnami.com/bitnami
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'

@@ -18,10 +18,9 @@ export DOCKERHUB_USERNAME= # Docker Hub username
 export DOCKERHUB_PASSWORD= # Docker Hub password
 
 # Alpha cluster settings
-export ALPHA_NAMESPACE= # Alpha cluster namespace
 export ALPHA_RABBITMQ_PASSWORD= # RabbitMQ password
 export ALPHA_REDIS_PASSWORD= # Redis password
 export ALPHA_WAVEFRONT_TOKEN= # Wavefront token
 
 # Bravo cluster settings
-export BRAVO_NAMESPACE= # Bravo cluster namespace
+export BRAVO_WAVEFRONT_TOKEN= # Wavefront token
