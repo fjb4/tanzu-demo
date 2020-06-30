@@ -5,3 +5,4 @@
 /scripts/config.yml
 /config.sh
 /argocd
+.DS_Store

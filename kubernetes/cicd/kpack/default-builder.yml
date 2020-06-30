@@ -13,6 +13,5 @@ metadata:
   name: default-builder
   namespace: kpack
 spec:
-  serviceAccount: kpack-service-account
   image: gcr.io/paketo-buildpacks/builder:base
   updatePolicy: polling

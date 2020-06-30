@@ -1,21 +1,17 @@
 apiVersion: build.pivotal.io/v1alpha1
 kind: Image
 metadata:
-  name: symfony-demo-app
+  name: spring-music
   namespace: kpack
 spec:
-  tag: fjb4/symfony-demo-app
+  tag: fjb4/spring-music
   serviceAccount: kpack-service-account
   successBuildHistoryLimit: 2
   builder:
-    name: php-builder
-    kind: CustomBuilder
+    name: default-builder
+    kind: Builder
   cacheSize: "2Gi"
   source:
     git:
-      url: https://github.com/Turbots/php-symfony-demo.git
+      url: https://github.com/cloudfoundry-samples/spring-music.git
       revision: master
-  build:
-    env:
-      - name: "APP_ENV"
-        value: "prod"
