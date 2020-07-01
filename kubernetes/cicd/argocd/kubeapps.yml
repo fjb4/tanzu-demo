@@ -17,7 +17,7 @@ spec:
         value: 'true'
       - name: frontend.service.type
         value: 'LoadBalancer'
-  project: ENVIRONMENT
+  project: default
   syncPolicy:
     automated:
       automated:

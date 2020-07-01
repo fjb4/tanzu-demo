@@ -23,7 +23,7 @@ spec:
         value: 'rabbit'
       - name: forceBoot.enabled
         value: 'true'
-  project: ENVIRONMENT
+  project: default
   syncPolicy:
     automated:
       automated:

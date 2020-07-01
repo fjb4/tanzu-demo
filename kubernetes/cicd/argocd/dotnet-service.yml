@@ -11,7 +11,7 @@ spec:
     repoURL: 'https://github.com/fjb4/tanzu-demo-gitops'
     targetRevision: master
     path: 'ENVIRONMENT/dotnet-service'
-  project: ENVIRONMENT
+  project: default
   syncPolicy:
     automated:
       automated:

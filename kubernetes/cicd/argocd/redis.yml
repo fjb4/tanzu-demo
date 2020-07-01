@@ -6,12 +6,12 @@ metadata:
 spec:
   destination:
     server: 'CLUSTER_URL'
-    namespace: default
+    namespace: redis
   source:
     repoURL: 'https://charts.bitnami.com/bitnami'
     targetRevision: 10.6.13
     chart: redis
-  project: ENVIRONMENT
+  project: default
   syncPolicy:
     automated:
       automated:
