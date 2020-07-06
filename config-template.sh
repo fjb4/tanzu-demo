@@ -8,7 +8,7 @@ export ACCOUNT_NAME= # tmc account name
 export SSH_KEY_NAME= # tmc ssh key name
 export REGION= # tmc region
 export GROUP= # tmc cluster group
-export $TMC_API_TOKEN= # tmc api token
+export TMC_API_TOKEN= # tmc api token
 
 # GitHub
 export GITHUB_USERNAME= # GitHub username
