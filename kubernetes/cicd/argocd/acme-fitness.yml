@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  namespace: argocd
+  name: acme-fitness
+spec:
+  destination:
+    server: 'CLUSTER_URL'
+    namespace: default
+  source:
+    repoURL: 'https://github.com/fjb4/acme_fitness_demo'
+    targetRevision: master
+    path: 'kubernetes-manifests'
+  project: default
+  syncPolicy:
+    automated:
+      automated:
+        prune: false
+        selfHeal: false
+      prune: true
+      selfHeal: true
